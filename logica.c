@@ -4,7 +4,7 @@
 struct Carta {
     char estado[30];
     char codigo[10];
-    char nome[50];
+    char nomeCidade[50];
     int populacao;
     float area;
     float pib;
@@ -16,21 +16,58 @@ struct Carta {
 int main() {
     struct Carta carta1, carta2;
 
-    strcpy(carta1.estado, "São Paulo");
-    strcpy(carta1.codigo, "SP01");
-    strcpy(carta1.nome, "São Paulo");
-    carta1.populacao = 12300000;
-    carta1.area = 1521.11;
-    carta1.pib = 2300000.0;
-    carta1.pontosTuristicos = 120;
+    printf("Digite os dados da Carta 1:\n");
 
-    strcpy(carta2.estado, "Rio de Janeiro");
-    strcpy(carta2.codigo, "RJ01");
-    strcpy(carta2.nome, "Rio de Janeiro");
-    carta2.populacao = 6000000;
-    carta2.area = 1182.3;
-    carta2.pib = 360000.0;
-    carta2.pontosTuristicos = 90;
+    printf("Estado: ");
+    fgets(carta1.estado, sizeof(carta1.estado), stdin);
+    carta1.estado[strcspn(carta1.estado, "\n")] = '\0'; 
+
+    printf("Código da Carta: ");
+    fgets(carta1.codigo, sizeof(carta1.codigo), stdin);
+    carta1.codigo[strcspn(carta1.codigo, "\n")] = '\0';
+
+    printf("Nome da Cidade: ");
+    fgets(carta1.nomeCidade, sizeof(carta1.nomeCidade), stdin);
+    carta1.nomeCidade[strcspn(carta1.nomeCidade, "\n")] = '\0';
+
+    printf("População: ");
+    scanf("%d", &carta1.populacao);
+
+    printf("Área (km²): ");
+    scanf("%f", &carta1.area);
+
+    printf("PIB (em milhões): ");
+    scanf("%f", &carta1.pib);
+
+    printf("Número de Pontos Turísticos: ");
+    scanf("%d", &carta1.pontosTuristicos);
+    getchar(); 
+
+    printf("\nDigite os dados da Carta 2:\n");
+
+    printf("Estado: ");
+    fgets(carta2.estado, sizeof(carta2.estado), stdin);
+    carta2.estado[strcspn(carta2.estado, "\n")] = '\0';
+
+    printf("Código da Carta: ");
+    fgets(carta2.codigo, sizeof(carta2.codigo), stdin);
+    carta2.codigo[strcspn(carta2.codigo, "\n")] = '\0';
+
+    printf("Nome da Cidade: ");
+    fgets(carta2.nomeCidade, sizeof(carta2.nomeCidade), stdin);
+    carta2.nomeCidade[strcspn(carta2.nomeCidade, "\n")] = '\0';
+
+    printf("População: ");
+    scanf("%d", &carta2.populacao);
+
+    printf("Área (km²): ");
+    scanf("%f", &carta2.area);
+
+    printf("PIB (em milhões): ");
+    scanf("%f", &carta2.pib);
+
+    printf("Número de Pontos Turísticos: ");
+    scanf("%d", &carta2.pontosTuristicos);
 
     carta1.densidadePopulacional = carta1.populacao / carta1.area;
     carta1.pibPerCapita = carta1.pib / carta1.populacao;
@@ -38,17 +75,17 @@ int main() {
     carta2.densidadePopulacional = carta2.populacao / carta2.area;
     carta2.pibPerCapita = carta2.pib / carta2.populacao;
 
-    printf("Comparação de cartas (Atributo: PIB per Capita):\n\n");
+    printf("\nComparação de cartas (Atributo: População):\n\n");
 
-    printf("Carta 1 - %s (%s): R$ %.2f\n", carta1.nome, carta1.estado, carta1.pibPerCapita);
-    printf("Carta 2 - %s (%s): R$ %.2f\n\n", carta2.nome, carta2.estado, carta2.pibPerCapita);
+    printf("Carta 1 - %s (%s): %d habitantes\n", carta1.nomeCidade, carta1.estado, carta1.populacao);
+    printf("Carta 2 - %s (%s): %d habitantes\n\n", carta2.nomeCidade, carta2.estado, carta2.populacao);
 
-    if (carta1.pibPerCapita > carta2.pibPerCapita) {
-        printf("Resultado: Carta 1 (%s) venceu!\n", carta1.nome);
-    } else if (carta2.pibPerCapita > carta1.pibPerCapita) {
-        printf("Resultado: Carta 2 (%s) venceu!\n", carta2.nome);
+    if (carta1.populacao > carta2.populacao) {
+        printf("Resultado: Carta 1 (%s) venceu!\n", carta1.nomeCidade);
+    } else if (carta2.populacao > carta1.populacao) {
+        printf("Resultado: Carta 2 (%s) venceu!\n", carta2.nomeCidade);
     } else {
-        printf("Resultado: Empate! As duas cartas têm o mesmo PIB per capita.\n");
+        printf("Resultado: Empate! Ambas as cidades têm a mesma população.\n");
     }
 
     return 0;
